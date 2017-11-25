@@ -35,9 +35,7 @@ const users = [
   { id: 7, name: "HI", age: 24},
 ]
 
-const getNames = bvalues('name')
 
-logger(getAges(filter(users, v => v.age > 30)))   // exam 1 
 logger(length(map(filter(users, v => v.age < 30), bvalue('age')))) // exam 2
 
 logger('i', 'users')
@@ -68,5 +66,7 @@ const bvalues = key => list => {
 }
 */
 const getAges = bvalues('age')
+const getNames = bvalues('name')
 
 logger(getNames(filter(users, v => v.age <= 30)))
+logger(getAges(filter(users, v => v.age > 30)))   // exam 1 

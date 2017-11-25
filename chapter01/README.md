@@ -39,13 +39,22 @@
 const not = v => return !v    // 그냥...!v 이걸로 쓰지 왜.. 굳이 함수로 만들어..?
 const beq = a => b => a === b // 이것도 그냥... a=== b 이걸로 쓰지 왜 함수로 만들어?
 
-_.some = list => !!_.find(list, _.identity)
+_.some = list => !!_.find(list, _.identity)//
+
 _.every = list => beq(-1)(_.findIndex(list, not)) //  findIndex는 찾고자 하는 값이 없으면 -1을 반환한다. 
 
 // _.every 같은 경우에 not과 beq 가 사용되었는데 
 // not과 beq가 만약 함수가 아니었다면 어떻게 사용했을지 상상해보라.
-_.every = list => -1 === _.findIndex(list, v => !v)
 // 둘과 비교했을때 과연 어떤게 더 가독성이 좋을까?
 // 프로그래머는 아래가 더 읽기 좋겠지만... 코드가 아니라 문서로 생각해본다면 또 어떨끼? 많은 고민을 하게되는 코드와 가이드이다.... 젠장.
 
 ```
+
+# 함수형은 쪼갤수록 함수 합성은 쉬워진다. 
+
+underscore의 _.compose는 오른쪽 함수의 결과를 왼쪽의 함수로 전달한다.
+그리고 해당 함수의 결과를 다시 자신의 왼쪽함수로 전달하는 고차함수 이다.
+
+arguments, apply, call 객체 등이 익숙하다면 _.compose 함수의 코드를 읽는 것은 크게 어렵지 않다.
+
+arguments 객체는 함수형 자바스크립트 객체를 다루다 보면 자주만나게 되는 녀석이다. 
